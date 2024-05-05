@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Битье яиц на Пасху</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        img {
+            width: 200px;
+            /* Начальное значение анимации */
+            animation: none;
+        }
+        .shake {
+            /* Добавляем анимацию тряски */
+            animation: shake 1s ease infinite;
+        }
+        @keyframes shake {
+            0% { transform: rotate(5deg); }
+            10% { transform: rotate(-5deg); }
+            20% { transform: rotate(5deg); }
+            30% { transform: rotate(-5deg); }
+            40% { transform: rotate(5deg); }
+            50% { transform: rotate(-5deg); }
+            60% { transform: rotate(5deg); }
+            70% { transform: rotate(-5deg); }
+            80% { transform: rotate(5deg); }
+            90% { transform: rotate(-5deg); }
+            90% { transform: rotate(5deg); }
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Разбей яичко!</h1>
+    <img id="eggImage" src="egg.png" alt="Яйцо">
+    <p>Зайка: <span id="player1Score">0</span> | Зайчик: <span id="player2Score">0</span></p>
+    <p>Нажмите на кнопку, чтобы разбить яйцо!</p>
+    <button onclick="breakEgg()">Стукнуться!</button>
+    <script>
+        let player1Score = 0;
+        let player2Score = 0;
+
+        function breakEgg() {
+            // Добавляем класс для анимации тряски
+            document.getElementById("eggImage").classList.add("shake");
+
+            const winner = Math.random() < 0.6 ? 1 : 2;
+            if (winner === 1) {
+                player1Score++;
+                document.getElementById("player1Score").textContent = player1Score;
+                alert('Зайка побеждает!');
+            } else {
+                player2Score++;
+                document.getElementById("player2Score").textContent = player2Score;
+                alert('Зайчик побеждает!');
+            }
+            
+            // Через время удаляем класс для анимации тряски
+            setTimeout(() => {
+                document.getElementById("eggImage").classList.remove("shake");
+            }, 1000); // Время анимации тряски
+        }
+    </script>
+</body>
+</html>
